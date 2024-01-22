@@ -1,6 +1,8 @@
 import express from "express";
+import { client } from "./utils/db.js";
 
 async function init() {
+  await client.connect;
   const app = express();
   const port = 4000;
 
@@ -9,6 +11,26 @@ async function init() {
 
   app.get("/", (req, res) => {
     return res.json("Hello Skill Checkpoint #2");
+  });
+
+  app.post("/create-question", (req, res) => {
+    return res.json({ message: `question has been posted successfully` });
+  });
+
+  app.get("/questions", (req, res) => {
+    return res.json({ data: `questions` });
+  });
+
+  app.get("/questions/:questionId", (req, res) => {
+    return res.json({ data: `questions` });
+  });
+
+  app.put("/questions/:questionId", (req, res) => {
+    return res.json({ data: `questions` });
+  });
+
+  app.delete("/questions/:questionId", (req, res) => {
+    return res.json({ message: `question has been deleted successfully` });
   });
 
   app.get("*", (req, res) => {
